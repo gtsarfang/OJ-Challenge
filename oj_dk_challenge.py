@@ -10,9 +10,19 @@ def dk_api_call(event_group: int):
     return: return successful API response
     """
     # call DraftKings front-end API
-    url = f'https://sportsbook-nash-usny.draftkings.com/sites/US-NY-SB/api/v5/eventgroups/{event_group}?format=json'
+    url = f'https://sportsbook-nash-usny.draftkings.com/sites/US-NY-SB/api/v5/eventgroups/{event_group}'
+    headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Referer': 'http://google.com',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+    'DNT': '1',
+}
     params = {'format': 'json'}
-    response = requests.get(url, params, timeout=20)
+    response = requests.get(url, params, headers=headers, timeout=20)
 
     # pass response if status code is good
     if response.status_code == 200:
